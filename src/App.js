@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { useState } from 'react'
+
+const App = () => {
+
+  const [message, setMessage] = useState('Hello World!');
+
+  const handleMessage = () => {
+    setMessage('Olá Mundo!')
+  }
+
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    
+      <h1>{message}</h1>
+      <button onClick={() => {
+        if(message === 'Hello World!'){
+          return handleMessage();
+        }else{
+          setMessage('Hello World!');
+        }
+      }}>Mude o Texto</button>
+    
+    
+    </>
   );
 }
 
