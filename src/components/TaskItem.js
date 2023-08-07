@@ -19,6 +19,16 @@ import React from "react";
 
 //O React.component nos dará uma função chamada render()
 class TaskItem extends React.Component{
+    componentDidMount(){
+        console.log("component was mounted")
+    }
+
+    componentWillUnmount(){
+        console.log("i will unmount")
+    }
+
+
+
     render(){
         //Fazendo o destructing da props para uma melhor sintaxe
         const {task} = this.props

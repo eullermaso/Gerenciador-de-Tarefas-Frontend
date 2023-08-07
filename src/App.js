@@ -99,6 +99,12 @@ class App extends React.Component{
       }
     }
 
+    componentDidUpdate(prevProps, prevState){
+      console.log(prevState)
+      console.log(prevProps)
+      console.log("component was updated!")
+    }
+
     handleSetState(){
       this.setState({
         tasks: []
