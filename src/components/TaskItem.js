@@ -1,8 +1,23 @@
-/*const TaskItem = ({task}) => {
+import { useEffect } from "react";
+
+const TaskItem = ({task}) => {
+    
+
+    //Maneira de utilizar componentDidMount e componentWillUnmount 
+    useEffect(() => {
+        console.log("component was mounted!")
+
+        return () => {
+            console.log("I will unmount!")
+        };
+        //Essas [] são utilizadas para indicar que um state foi mudado. Seria necessário passar o state dentro da []
+    },[])
+    
+    
+    
     return (
 
-        <>
-        //pegando as props e colocando no h1 e p
+        <> 
             <h1>{task.description}</h1>
             <p>{task.isComleted ? 'Completa' : 'Não Completa'}</p>
         </>
@@ -11,9 +26,9 @@
     
 };
 
-export default TaskItem;*/
+export default TaskItem;
 
-//Componenetes de classe (Não é a melhor forma)
+/*//Componenetes de classe (Não é a melhor forma)
 
 import React from "react";
 
@@ -42,4 +57,4 @@ class TaskItem extends React.Component{
     }
 }
 
-export default TaskItem;
+export default TaskItem;*/

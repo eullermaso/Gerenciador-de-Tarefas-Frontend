@@ -1,11 +1,19 @@
 
-/*//useState é utilizado para mudar o estado de uma variável (mudar o valor)
-import { useState } from 'react'
+//useState é utilizado para mudar o estado de uma variável (mudar o valor)
+import { useState, useEffect, useRef } from 'react'
 import TaskItem from './components/TaskItem';
 import PaisesItem from './components/PaisesItem';
 import Cidades from './components/Cidades';
 
 const App = () => {
+
+  const mounted = useRef(false);
+
+    if(mounted.current === false){
+      mounted.current = true
+    }else{
+      console.log("component was updated")
+    }
 
   //Criando uma lista de tarefas
   //O useState é necessário para alterar o virtual DOM
@@ -36,6 +44,10 @@ const [paises, setPaises] = useState([
   }
 ]);
 
+  const handleCleanTasks = () => {
+    setTasks([])
+  }
+
 const [cidades, setCidade] = useState([
   {
     id: 1,
@@ -57,9 +69,11 @@ const [cidades, setCidade] = useState([
       {tasks.map((task) => 
         (<TaskItem key={task.id} task={task}/>))} 
 
-      {paises.map((paises) => (<PaisesItem paises={paises}></PaisesItem>))}
+      {paises.map((paises) => (<PaisesItem key={paises.id} paises={paises}></PaisesItem>))}
 
-      {cidades.map((cidades) => (<Cidades city={cidades}></Cidades>))}
+      {cidades.map((cidades) => (<Cidades key={cidades.id} city={cidades}></Cidades>))}
+
+      <button onClick={handleCleanTasks}>Limpar task</button>
       
     
     
@@ -67,9 +81,9 @@ const [cidades, setCidade] = useState([
   );
 }
 
-export default App;*/
+export default App;
 
-import React from 'react'
+/*import React from 'react'
 import TaskItem from './components/TaskItem'
 
 class App extends React.Component{
@@ -125,4 +139,4 @@ class App extends React.Component{
     }
 };
 
-export default App;
+export default App;*/
