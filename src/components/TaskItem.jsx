@@ -1,11 +1,26 @@
 import './TaskItem.scss'
 import {AiFillDelete} from 'react-icons/ai'
+import axios from 'axios'
+import { useAlert } from 'react-alert';
 
 //label com uma classe dinâmica para alterar o estilo após determinada ação
 
 //defaultChecked do input define como o input iniciar, marcado ou não.
 
-const TaskItem = ({task}) => {
+const TaskItem = ({task, fetchTasks}) => {
+    const alert = useAlert();
+    const handleTaskItemDelete = async () => {
+        try{
+            await axios.delete(`http://localhost:8000/tasks/${task._id}`)
+
+            await fetchTasks();
+
+            alert.success('Tarefa removida com sucesso')
+
+        }catch(error){
+            alert.error("Algo deu Errado")
+        }
+    }
     return (
         <div className="task-item-container">
             <div className="task-description">
@@ -18,7 +33,7 @@ const TaskItem = ({task}) => {
                 </label>
             </div>
             <div className="delete">
-                <AiFillDelete size={18} color="#F97474"/>
+                <AiFillDelete size={18} color="#F97474" onClick={handleTaskItemDelete}/>
             </div>
         </div>
         
