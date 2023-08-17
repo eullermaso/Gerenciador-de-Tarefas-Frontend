@@ -11,7 +11,7 @@ import CustomButton from './CustomButton'
 
 
 
-const AddTask = () => {
+const AddTask = ({fetchTasks}) => {
     const [tasks,setTasks] = useState("") 
     const alert = useAlert();
 
@@ -30,8 +30,12 @@ const AddTask = () => {
                 isCompleted: false,
             });
 
-        }catch(error){
+            await fetchTasks();
 
+            
+            setTasks('');
+        }catch(error){
+            alert.error("Algo deu errado")
         }
     }
     return(
