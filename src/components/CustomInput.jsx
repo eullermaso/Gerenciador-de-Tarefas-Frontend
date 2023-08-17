@@ -1,5 +1,7 @@
 import "./CustomInput.scss"
 
+
+
 const CustomInput = ({label, value, onChange}) => {
     return(
         <div className="custom-input-container">
