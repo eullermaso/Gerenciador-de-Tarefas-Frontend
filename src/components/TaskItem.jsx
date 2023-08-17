@@ -21,13 +21,29 @@ const TaskItem = ({task, fetchTasks}) => {
             alert.error("Algo deu Errado")
         }
     }
+
+    const handleTaskCompletionChange = async (e) => {
+        try{
+            await axios.patch(`http://localhost:8000/tasks/${task._id}`,{
+                isCompleted: e.target.checked
+            })
+            await fetchTasks();
+
+            alert.success("Tarefa completada")
+
+        }catch(error){
+            alert.error("Algo deu errado")
+        }
+    }
+
+
     return (
         <div className="task-item-container">
             <div className="task-description">
                 
                 <label className={task.isCompleted ? "checkbox-container-completed" : "checkbox-container"}>
                     {task.description}
-                    <input type="checkbox" defaultChecked={task.isCompleted}/>
+                    <input type="checkbox" defaultChecked={task.isCompleted} onChange={(e) => handleTaskCompletionChange(e)}/>
                     <span className={task.isCompleted ? "checkmark completed" : "checkmark"}>
                     </span>
                 </label>
