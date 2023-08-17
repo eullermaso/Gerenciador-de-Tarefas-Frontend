@@ -1,4 +1,5 @@
 import Tasks from "./components/Tasks";
+import Sidebar from './components/Sidebar'
 
 const App = () => {
 
@@ -7,9 +8,8 @@ const App = () => {
   //Renderizando 1 item pra cada tarefa
   return (
     <>
-      <Tasks/>
-    
-    
+      <Sidebar/>
+        <Tasks/>
     </>
   );
 }

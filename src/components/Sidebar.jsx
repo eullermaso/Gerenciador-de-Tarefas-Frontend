@@ -1,7 +1,7 @@
 import logo from '../assests/images/logo.png'
 import CustomButton from './CustomButton'
 
-import 'Sidebar.scss'
+import './Sidebar.scss'
 
 const Sidebar = () => {
     return (
@@ -16,3 +16,5 @@ const Sidebar = () => {
         </div>
     )
 }
+
+export default Sidebar;
