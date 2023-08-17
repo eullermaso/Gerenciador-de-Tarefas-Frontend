@@ -15,7 +15,7 @@ const TaskItem = ({task, fetchTasks}) => {
 
             await fetchTasks();
 
-            alert.success('Tarefa removida com sucesso')
+             alert.success('Tarefa removida com sucesso')
 
         }catch(error){
             alert.error("Algo deu Errado")
