@@ -40,14 +40,14 @@ const Tasks = () => {
                 <h3>Últimas Tarefas</h3>
                 <AddTasks fetchTasks={fetchTasks}/>
                 <div className="tasks-list">
-                    {tasks.filter((task) => task.isCompleted === false).map((lastTask) => <TaskItem task={lastTask} fetchTasks={fetchTasks}/>)}
+                    {tasks.filter((task) => task.isCompleted === false).map((lastTask) => <TaskItem task={lastTask} key={lastTask._id} fetchTasks={fetchTasks}/>)}
                 </div>
             </div>
 
             <div className="completed-tasks">
                 <h3>Tarefas Concluídas</h3>
                 <div className="tasks-list">
-                    {tasks.filter((task) => task.isCompleted).map((completedTask) => <TaskItem task={completedTask} fetchTasks={fetchTasks}/>)}
+                    {tasks.filter((task) => task.isCompleted).map((completedTask) => <TaskItem task={completedTask} key={completedTask._id} fetchTasks={fetchTasks}/>)}
                 </div>
             </div>
         </div>
