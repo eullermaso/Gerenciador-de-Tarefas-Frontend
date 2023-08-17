@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { useAlert } from "react-alert"
 
 
 import './Tasks.scss'
@@ -13,6 +14,7 @@ const Tasks = () => {
     //Criando uma lista de tarefas
     //O useState é necessário para alterar o virtual DOM
   const [tasks, setTasks] = useState([]);
+  const alert = useAlert();
 
 
   const fetchTasks = async () => {
@@ -20,8 +22,8 @@ const Tasks = () => {
       const {data} = await axios.get('http://localhost:8000/tasks')
       setTasks(data)
       
-    }catch(error){
-      console.log(error)
+    }catch(_error){
+      alert.error("Não foi possivel recupera as tarefas")
     }
   }
 
