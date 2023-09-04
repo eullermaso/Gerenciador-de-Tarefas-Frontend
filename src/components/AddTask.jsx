@@ -1,46 +1,42 @@
-import {useState} from 'react';
+import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
-import { useAlert } from 'react-alert';
+import { useAlert } from 'react-alert'
 import axios from 'axios'
 
-import "./AddTask.scss"
+import './AddTask.scss'
 
-
-import CustomInput from "./CustomInput"
+import CustomInput from './CustomInput'
 import CustomButton from './CustomButton'
 
+const AddTask = ({ fetchTasks }) => {
+  const [tasks, setTasks] = useState('')
+  const alert = useAlert()
 
+  const onChange = (e) => {
+    setTasks(e.target.value)
+  }
 
-const AddTask = ({fetchTasks}) => {
-    const [tasks,setTasks] = useState("") 
-    const alert = useAlert();
+  const handleTaskAddtion = async () => {
+    try {
+      if (tasks.length === 0) {
+        return alert.error('A Tarefa precisa de uma descrição para ser adicionada')
+      }
 
-    const onChange = (e) => {
-        setTasks(e.target.value);
+      await axios.post('http://localhost:8000/tasks', {
+        description: tasks,
+        isCompleted: false
+      })
+
+      await fetchTasks()
+
+      setTasks('')
+
+      await alert.success('Tarefa adicionada com sucesso!')
+    } catch (_error) {
+      alert.error('Algo deu errado')
     }
-
-    const handleTaskAddtion = async () => {
-        try{
-            if(tasks.length === 0){
-                return alert.error("A Tarefa precisa de uma descrição para ser adicionada")
-            }
-
-            await axios.post("http://localhost:8000/tasks", {
-                description: tasks,
-                isCompleted: false,
-            });
-
-            await fetchTasks();
-
-            
-            setTasks('');
-
-            await alert.success("Tarefa adicionada com sucesso!")
-        }catch(_error){
-            alert.error("Algo deu errado")
-        }
-    }
-    return(
+  }
+  return (
         <div className="add-task-container">
             <CustomInput label="Adicionar Tarefa..." value={tasks} onChange={onChange} onEnterPress={handleTaskAddtion}/>
 
@@ -48,7 +44,7 @@ const AddTask = ({fetchTasks}) => {
                 <FaPlus size={14} color='#ffffff'></FaPlus>
             </CustomButton>
         </div>
-    );
-};
+  )
+}
 
-export default AddTask;
+export default AddTask
